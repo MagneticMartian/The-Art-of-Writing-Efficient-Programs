@@ -16,8 +16,9 @@ void BM_add(benchmark::State& state) {
     for (auto _ : state) {
         unsigned long a1 = 0;
         for (size_t i = 0; i < N; ++i) {
-            benchmark::DoNotOptimize(a1 += p1[i] + p2[i]);
+            a1 += p1[i] + p2[i];
         }
+        benchmark::DoNotOptimize(a1);
         benchmark::ClobberMemory();
     }
     state.SetItemsProcessed(N*state.iterations());
@@ -37,8 +38,9 @@ void BM_multiply(benchmark::State& state) {
     for (auto _ : state) {
         unsigned long a1 = 0;
         for (size_t i = 0; i < N; ++i) {
-            benchmark::DoNotOptimize(a1 += p1[i] * p2[i]);
+            a1 += p1[i] * p2[i];
         }
+        benchmark::DoNotOptimize(a1);
         benchmark::ClobberMemory();
     }
     state.SetItemsProcessed(N*state.iterations());
